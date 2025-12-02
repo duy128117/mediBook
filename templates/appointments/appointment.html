@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Đặt lịch khám - MediBook{% endblock %} {% block content %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/appointment.css' %}" />
+
+<section class="search-section">
+    <div class="container">
+        <div class="search-header">
+            <h1 class="search-title">Tìm Bác Sĩ Phù Hợp</h1>
+            <p class="search-subtitle">Đặt lịch khám với các bác sĩ hàng đầu một cách dễ dàng</p>
+        </div>
+
+        <form class="search-bar" method="get" action="#">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="doctor-search" name="q" class="search-input" placeholder="Tìm theo triệu chứng, tên bác sĩ..." />
+            <button type="submit" class="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+
+        <div class="filters">
+            <button class="filter-btn" data-filter="specialty"><i class="fas fa-user-md"></i> Chuyên khoa</button>
+            <button class="filter-btn" data-filter="gender"><i class="fas fa-venus-mars"></i> Giới tính</button>
+            <button class="filter-btn" data-filter="experience"><i class="fas fa-award"></i> Kinh nghiệm</button>
+            <button class="filter-btn" data-filter="rating"><i class="fas fa-star"></i> Đánh giá</button>
+        </div>
+    </div>
+</section>
+
+<!-- Results Section -->
+<div class="container">
+    <section class="results-section">
+        <div class="results-header">
+            <div class="result-count">
+                <div class="result-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="doctor-list" id="doctor-list"></div>
+    </section>
+</div>
+
+<!-- Pagination -->
+<div id="pagination" class="pagination-controls"></div>
+
+<!-- Modal -->
+<div id="filter-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-title" class="modal-title">Chọn bộ lọc</h2>
+            <button class="close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <input type="text" id="modal-search" class="modal-search" placeholder="Tìm kiếm..." />
+            <div id="modal-options" class="options-list"></div>
+        </div>
+        <div class="modal-footer">
+            <button id="clear-filter" class="modal-btn clear-btn">Xóa bộ lọc</button>
+            <button id="apply-filter" class="modal-btn apply-btn">Áp dụng</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0"></script>
+<script src="{% static 'js/appointment.js' %}"></script>
+{% endblock %}
